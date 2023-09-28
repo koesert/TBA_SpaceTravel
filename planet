@@ -1,0 +1,51 @@
+class Planet:
+    def __init__(self, name, description, atmosphere, terrain, resources, flight_cost):
+        self.name = name
+        self.description = description
+        self.atmosphere = atmosphere
+        self.terrain = terrain
+        self.resources = resources
+        self.flight_cost = flight_cost
+
+    def __str__(self):
+        return f"Welcome to Planet {self.name}!\n" \
+               f"Description: {self.description}\n" \
+               f"Atmosphere: {self.atmosphere}\n" \
+               f"Terrain: {self.terrain}\n" \
+               f"Resources: {', '.join(self.resources)}\n" \
+               f"Flight Cost: {self.flight_cost} credits"
+
+
+# Define attributes for Nebulorion
+nebulorion = Planet(
+    name="Nebulorion",
+    description="Nebulorion is a mysterious planet covered in dense fog and glowing vegetation.",
+    atmosphere="Thick mist with trace gases",
+    terrain="Glowing forests, swamps, and ancient ruins",
+    resources=["Luminous plants", "Mystical crystals", "Ancient artifacts"],
+    flight_cost=10
+)
+
+# Define attributes for Celesterra
+celesterra = Planet(
+    name="Celesterra",
+    description="Celesterra is a celestial paradise with shimmering skies and floating islands.",
+    atmosphere="Gaseous, iridescent clouds",
+    terrain="Floating islands, crystal caves, and waterfalls of stardust",
+    resources=["Floating fruit", "Stardust crystals", "Celestial flora"],
+    flight_cost=15
+)
+
+# Define attributes for Echopluto
+echopluto = Planet(
+    name="Echopluto",
+    description="Echopluto is a frozen wasteland, haunted by eerie echoes and ancient ice creatures.",
+    atmosphere="Thin, icy winds and eerie echoes",
+    terrain="Endless icy plains, frozen caverns, and towering ice spires",
+    resources=["Frozen crystals", "Echo-enhanced plants", "Ancient ice relics"],
+    flight_cost=20
+)
+
+
+def explore_planet(planet):
+    print(planet)
