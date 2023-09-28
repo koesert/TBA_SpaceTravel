@@ -1,0 +1,67 @@
+import random
+
+
+class AlienShipCondition:
+    def __init__(self, name, health, attack_power):
+        self.name = name
+        self.health = health
+        self.attack_power = attack_power
+
+    def take_damage(self, damage):
+        self.health -= damage
+
+    def is_alive(self):
+        return self.health > 0
+
+    def attack(self):
+        return random.randint(1, self.attack_power)
+
+
+def create_alien_ship():
+    name = "Alien Ship"
+    health = random.randint(100, 200)
+    attack_power = random.randint(10, 20)
+    return AlienShipCondition(name, health, attack_power)
+
+
+def player_attack(player_damage, alien_ship):
+    alien_ship.take_damage(player_damage)
+    print(f"You dealt {player_damage} damage to the {alien_ship.name}!")
+
+
+def alien_attack(player_health, alien_ship):
+    damage = alien_ship.attack()
+    player_health -= damage
+    print(f"The {alien_ship.name} dealt {damage} damage to you!")
+    return player_health
+
+
+def check_winner(player_health, alien_ship):
+    if player_health <= 0:
+        print("Game Over! The Alien Ship has won.")
+        return True
+    elif not alien_ship.is_alive():
+        print("Congratulations! You have defeated the Alien Ship!")
+        return True
+    return False
+
+
+def play_game():
+    player_health = 100
+    alien_ship = create_alien_ship()
+
+    print(f"You are facing an {alien_ship.name} in space!")
+    print(f"Your health: {player_health}")
+    print(f"{alien_ship.name}'s health: {alien_ship.health}")
+
+    while True:
+        player_damage = random.randint(5, 15)
+        player_attack(player_damage, alien_ship)
+
+        if alien_ship.is_alive():
+            player_health = alien_attack(player_health, alien_ship)
+            print(f"Your health: {player_health}")
+            print(f"{alien_ship.name}'s health: {alien_ship.health}")
+
+        if check_winner(player_health, alien_ship):
+            break
