@@ -1,0 +1,13 @@
+class Spaceship:
+    def __init__(self, name, fuel, speed):
+        self.name = name
+        self.fuel = fuel
+        self.speed = speed
+
+    def travel_to(self, planet):
+        if self.fuel >= planet.cost:
+            self.fuel -= planet.cost
+            print(f"Traveling to {planet.name}...")
+            print("Arrived at destination!")
+        else:
+            print("Insufficient fuel to travel to this planet.")
