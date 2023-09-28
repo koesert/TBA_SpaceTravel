@@ -4,6 +4,7 @@ shop_items = {
     "Pistol": {"price": 50, "quantity": 20},
     "Medkit": {"price": 30, "quantity": 15},
     "Alien artifact": {"price": 200, "quantity": 8},
+    "Food": {"price": 20, "quantity": 10},
 }
 
 
