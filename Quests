@@ -1,0 +1,75 @@
+import random
+
+class Player:
+    def __init__(self, name):
+        self.name = name
+        self.money = 100
+        self.inventory = []
+
+    def earn_money(self, amount):
+        self.money += amount
+
+    def spend_money(self, amount):
+        if self.money >= amount:
+            self.money -= amount
+            return True
+        else:
+            return False
+
+class Quest:
+    def __init__(self, name, description, reward, completion_chance):
+        self.name = name
+        self.description = description
+        self.reward = reward
+        self.completion_chance = completion_chance
+
+    def complete(self, player):
+        if random.random() < self.completion_chance:
+            player.earn_money(self.reward)
+            print(f"Quest completed: {self.name}")
+            print(f"You earned {self.reward} credits!")
+            return True
+        else:
+            print(f"Quest failed: {self.name}")
+            return False
+
+def main():
+    player_name = input("Welcome to the Space Adventure game! Enter your name: ")
+    player = Player(player_name)
+    quests = [
+        Quest("Rescue the Space Station", "Save the astronauts stranded on a space station.", 100, 0.8),
+        Quest("Discover Alien Planet 1", "Explore an uncharted planet and collect alien artifacts.", 150, 0.7),
+        Quest("Rescue the Space Station", "Save the astronauts stranded on a space station.", 100, 0.8),
+        Quest("Discover unknown Alien Planet 2", "Explore an uncharted planet and collect alien artifacts.", 150, 0.7),
+        Quest("Chart the Nebula", "Navigate a dangerous nebula and collect valuable data.", 250, 0.6),
+    ]
+
+    while True:
+        print("\n" + "=" * 30)
+        print(f"Welcome, {player.name}!")
+        print(f"Current Money: {player.money} credits")
+        print("Available Quests:")
+        for i, quest in enumerate(quests, start=1):
+            print(f"{i}. {quest.name} - {quest.description}")
+
+        choice = input("Enter the number of the quest you want to take (q to quit): ")
+
+        if choice == 'q':
+            print("Thanks for playing!")
+            break
+        elif choice.isdigit():
+            quest_index = int(choice) - 1
+            if 0 <= quest_index < len(quests):
+                selected_quest = quests[quest_index]
+                if selected_quest in player.inventory:
+                    print("You've already completed this quest!")
+                else:
+                    if selected_quest.complete(player):
+                        player.inventory.append(selected_quest)
+            else:
+                print("Invalid quest number. Please try again.")
+        else:
+            print("Invalid input. Please try again.")
+
+if __name__ == "__main__":
+    main()
