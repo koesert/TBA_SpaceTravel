@@ -1,0 +1,69 @@
+import random
+
+class AlienShip:
+    def __init__(self, name):
+        self.name = name
+        self.locations = {
+            "Bridge": "You are at the bridge of the alien ship.",
+            "Engine Room": "You find yourself in the engine room. It's filled with strange machinery.",
+            "Crew Quarters": "You enter the crew quarters. It seems deserted.",
+            "Cargo Hold": "You're in the cargo hold. There are mysterious alien artifacts here."
+        }
+        self.current_location = "Bridge"
+        self.num_aliens = 0
+
+    def describe_location(self):
+        return self.locations[self.current_location]
+
+    def change_location(self, new_location):
+        if new_location in self.locations:
+            self.current_location = new_location
+
+            probabilities = [0.25, 0.35, 0.20, 0.15, 0.05]
+            self.num_aliens = random.choices(range(5), probabilities)[0]
+        else:
+            print("Invalid location!")
+
+    def interact_with_location(self):
+        print(self.describe_location())
+        if self.num_aliens == 0:
+            print("You don't see any aliens here.")
+        else:
+            print(f"You see {self.num_aliens} alien{'s' if self.num_aliens > 1 else ''} here.")
+
+    def make_contact_with_aliens(self):
+        if self.num_aliens > 0:
+            print("You attempt to make contact with the aliens...")
+            contact_success = random.random() < 0.3 
+            if contact_success:
+                print("Contact with the aliens was successful! They seem friendly.")
+            else:
+                print("Contact with the aliens was unsuccessful. They appear hostile.")
+        else:
+            print("There are no aliens here to make contact with.")
+
+def explore_alien_ship(alien_ship):
+    while True:
+        print("\nWhat would you like to do?")
+        print("1. Move to a different location")
+        print("2. Interact with the current location")
+        print("3. Make contact with aliens")
+        print("4. Quit the game")
+        choice = input("Enter your choice: ")
+
+        if choice == "1":
+            new_location = input("Enter the name of the location you want to move to: ")
+            alien_ship.change_location(new_location)
+        elif choice == "2":
+            alien_ship.interact_with_location()
+        elif choice == "3":
+            alien_ship.make_contact_with_aliens()
+        elif choice == "4":
+            print("Thanks for playing!")
+            break
+        else:
+            print("Invalid choice. Try again.")
+
+alien_ship = AlienShip("AlienVessel")
+
+explore_alien_ship(alien_ship)
