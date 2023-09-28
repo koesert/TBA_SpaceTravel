@@ -1,0 +1,40 @@
+import time
+
+class Room:
+    def __init__(self, name, description):
+        self.name = name
+        self.description = description
+        self.paths = {}
+
+    def add_paths(self, paths):
+        self.paths.update(paths)
+
+    def enter(self):
+        print(f"You are in {self.name}. {self.description}")
+        time.sleep(1)
+
+def game_over():
+    print("Game Over!")
+    exit(0)
+
+def play_game():
+    room1 = Room("Room 1", "This room is filled with strange alien technology.")
+    room2 = Room("Room 2", "You see a mysterious portal in the center of the room.")
+    room3 = Room("Room 3", "You are in a room with a control panel for the spaceship.")
+
+    room1.add_paths({"east": room2})
+    room2.add_paths({"west": room1, "north": room3})
+    room3.add_paths({"south": room2})
+
+    current_room = room1
+
+    while True:
+        current_room.enter()
+        command = input("What do you want to do? (type 'q' to quit) ").strip().lower()
+
+        if command == 'q':
+            game_over()
+        elif command in current_room.paths:
+            current_room = current_room.paths[command]
+        else:
+            print("Invalid command. Try again.")
