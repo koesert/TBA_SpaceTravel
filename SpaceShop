@@ -1,0 +1,121 @@
+class SpaceShop:
+    def __init__(self):
+        self.items = {
+            "Armor": 100,
+            "Fuel": 50,
+            "Food": 20,
+            "Drinks": 10
+        }
+        self.player_inventory = {
+            "Armor": 0,
+            "Fuel": 0,
+            "Food": 0,
+            "Drinks": 0
+        }
+        self.player_balance = 1000
+
+    def display_items(self):
+        print("Welcome to the Space Shop!")
+        print("Available items:")
+        for item, price in self.items.items():
+            print(f"{item}: {price} credits")
+
+    def buy_item(self, item, quantity):
+        if item in self.items:
+            price = self.items[item] * quantity
+            if self.player_balance >= price:
+                self.player_inventory[item] += quantity
+                self.player_balance -= price
+                print(f"You bought {quantity} {item}(s) for {price} credits!")
+            else:
+                print("Insufficient balance to buy the item.")
+        else:
+            print("Item not available in the shop.")
+
+    def sell_item(self, item, quantity):
+        if item in self.items:
+            if self.player_inventory[item] >= quantity:
+                price = self.items[item] * quantity
+                self.player_inventory[item] -= quantity
+                self.player_balance += price
+                print(f"You sold {quantity} {item}(s) for {price} credits!")
+            else:
+                print("You don't have enough items to sell.")
+        else:
+            print("Item not available in the shop.")
+
+    def display_inventory(self):
+        print("Your inventory:")
+        for item, quantity in self.player_inventory.items():
+            if quantity > 0:
+                print(f"{item}: {quantity}")
+
+    def display_balance(self):
+        print(f"Your balance: {self.player_balance} credits")
+
+    def inventory(self):
+        food_bars = ['Energy Bar', 'Protein Bar', 'Vitamin Bar']
+        food_bar_prices = [10, 15, 12]
+
+        drinks = ['Water', 'Alien Juice', 'Cosmic Cola']
+        drink_prices = [5, 20, 15]
+
+        armor = ['Helmet', 'Chestplate', 'Gauntlets']
+        armor_prices = [50, 100, 80]
+
+        fuel = ['Rocket Fuel', 'Ion Cells', 'Dark Matter']
+        fuel_prices = [200, 150, 300]
+
+        print("-------- Space Shop Inventory --------")
+        print("Food Bars:")
+        for i in range(len(food_bars)):
+            print(f"{food_bars[i]} - Price: {food_bar_prices[i]} credits")
+
+        print("\nDrinks:")
+        for i in range(len(drinks)):
+            print(f"{drinks[i]} - Price: {drink_prices[i]} credits")
+
+        print("\nArmor:")
+        for i in range(len(armor)):
+            print(f"{armor[i]} - Price: {armor_prices[i]} credits")
+
+        print("\nFuel:")
+        for i in range(len(fuel)):
+            print(f"{fuel[i]} - Price: {fuel_prices[i]} credits")
+
+    def start(self):
+        while True:
+            print("1. Display items")
+            print("2. Buy item")
+            print("3. Sell item")
+            print("4. Display inventory")
+            print("5. Display balance")
+            print("6. Display shop inventory")
+            print("7. Exit shop")
+            choice = input("Enter your choice: ")
+
+            if choice == "1":
+                self.display_items()
+            elif choice == "2":
+                item = input("Enter the item you want to buy: ")
+                quantity = int(input("Enter the quantity: "))
+                self.buy_item(item, quantity)
+            elif choice == "3":
+                item = input("Enter the item you want to sell: ")
+                quantity = int(input("Enter the quantity: "))
+                self.sell_item(item, quantity)
+            elif choice == "4":
+                self.display_inventory()
+            elif choice == "5":
+                self.display_balance()
+            elif choice == "6":
+                self.inventory()
+            elif choice == "7":
+                print("Exiting the shop. Thank you for visiting!")
+                break
+            else:
+                print("Invalid choice. Please try again.")
+
+#example uses
+shop = SpaceShop()
+shop.start()
