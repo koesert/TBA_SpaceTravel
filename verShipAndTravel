@@ -1,0 +1,376 @@
+import random
+
+locations = ["Nebulorion", "Celesterra", "Echopluto","SpaceShop"]
+def cockpit():
+    print("You find yourself in the spaceship's cockpit, surrounded by an array of blinking controls and a panoramic view of the cosmos.")
+    print("You can choose to navigate in any of the four directions. Where would you like to go?")
+
+def drive_cockpit():
+    print("You take a seat in the cockpit, ready to command the spaceship through the vastness of space.")
+    print("You can choose to navigate in any of the four directions. Where would you like to go?")
+
+
+def travel_to_Nebulorion():
+    print("You set a course for Nebulorion...")
+
+    print("You have arrived at Nebulorion!")
+
+    print("As you disembark from your spaceship, you encounter the inhabitants of Nebulorion.")
+    decision1 = input("Do you want to befriend them (1) or fight them (2)? Enter 1 or 2: ")
+
+    if decision1 == "1":
+
+        print("You extend a hand of friendship, and the inhabitants of Nebulorion warmly welcome you.")
+
+    elif decision1 == "2":
+
+        print("You draw your laser blaster and prepare for a fight against the inhabitants of Nebulorion.")
+        fight_outcome = random.random()
+
+        if fight_outcome < 0.5:
+
+            print("Unfortunately, the inhabitants of Nebulorion are too powerful, and you lose the fight.")
+
+        else:
+            print(
+                "With your exceptional skills, you emerge victorious in the fight against the inhabitants of Nebulorion.")
+
+    else:
+        print("Invalid choice. Please enter 1 to befriend or 2 to fight.")
+
+
+
+
+def travel_to_Celesterra():
+    print("You set a course for Celesterra...")
+
+    print("You have arrived at Celesterra!")
+
+    print("As you disembark from your spaceship, you encounter the inhabitants of Celesterra.")
+    decision1 = input("Do you want to befriend them (1) or fight them (2)? Enter 1 or 2: ")
+
+    if decision1 == "1":
+
+        print("You extend a hand of friendship, and the inhabitants of Celesterra warmly welcome you.")
+
+    elif decision1 == "2":
+
+        print("You draw your laser blaster and prepare for a fight against the inhabitants of Celesterra.")
+        fight_outcome = random.random()
+
+        if fight_outcome < 0.5:
+
+            print("Unfortunately, the inhabitants of Celesterra are too powerful, and you lose the fight.")
+
+        else:
+            print(
+                "With your exceptional skills, you emerge victorious in the fight against the inhabitants of Celesterra.")
+    else:
+        print("Invalid choice. Please enter 1 to befriend or 2 to fight.")
+
+
+
+def travel_to_Echopluto():
+    print("You set a course for Echopluto...")
+
+    print("You have arrived at Echopluto!")
+    print("As you disembark from your spaceship, you encounter the inhabitants of Echopluto.")
+    decision1 = input("Do you want to befriend them (1) or fight them (2)? Enter 1 or 2: ")
+
+    if decision1 == "1":
+
+        print("You extend a hand of friendship, and the inhabitants of Echopluto warmly welcome you.")
+
+    elif decision1 == "2":
+
+        fight_outcome = random.random()
+
+        if fight_outcome < 0.5:
+            print("Unfortunately, the inhabitants of Echopluto are too powerful, and you lose the fight.")
+
+        else:
+
+            print(
+                "With your exceptional skills, you emerge victorious in the fight against the inhabitants of Echopluto.")
+
+    else:
+            print("Invalid choice. Please enter 1 to befriend or 2 to fight.")
+
+
+def travel_to_SpaceShop():
+    print("You set a course for SpaceShop...")
+
+    print("You have arrived at SpaceShop!")
+
+    credits = 1000
+
+    inventory = {
+        "Space Suit": {"price": 200, "quantity": 10},
+        "Rocket Boots": {"price": 150, "quantity": 5},
+        "Energy Drink": {"price": 20, "quantity": 100},
+        "Alien Food": {"price": 50, "quantity": 20},
+    }
+
+    while True:
+        print("\nSpaceShop Menu:")
+        print("1. Buy items")
+        print("2. Sell items")
+        print("3. Leave SpaceShop")
+        choice = input("Enter your choice (1/2/3): ")
+
+        if choice == "1":
+            print("\nAvailable items for purchase:")
+            for item, info in inventory.items():
+                print(f"{item}: Price - {info['price']} credits | Quantity - {info['quantity']}")
+
+            item_to_buy = input("Enter the name of the item you want to buy: ")
+            if item_to_buy in inventory:
+                quantity_to_buy = int(input(f"How many {item_to_buy}s do you want to buy? "))
+                if quantity_to_buy <= inventory[item_to_buy]["quantity"]:
+                    cost = inventory[item_to_buy]["price"] * quantity_to_buy
+                    if credits >= cost:
+                        credits -= cost
+                        inventory[item_to_buy]["quantity"] -= quantity_to_buy
+                        print(f"You bought {quantity_to_buy} {item_to_buy}s for {cost} credits.")
+                    else:
+                        print("You don't have enough credits to buy this item.")
+                else:
+                    print("Not enough of this item in stock.")
+            else:
+                print("Item not found in the SpaceShop.")
+
+        elif choice == "2":
+            print("Sorry, selling items is not currently supported.")
+
+        elif choice == "3":
+            print("You leave SpaceShop.")
+            break
+
+        else:
+            print("Invalid choice. Please select a valid option (1/2/3).")
+
+
+
+
+def navigate_spaceship():
+    print("You are in the spaceship and ready to navigate to other planets.")
+    print("Here are the available planets to visit:")
+
+    for i, planet in enumerate(locations, start=1):
+        print(f"{i}: {planet}")
+
+    while True:
+        choice = input("Enter the number of the planet you want to visit (or 'q' to quit): ").strip().lower()
+
+        if choice == 'q':
+            print("You decide not to leave the spaceship.")
+            return
+
+        if choice.isdigit():
+            choice = int(choice)
+            if 1 <= choice <= len(locations):
+                selected_planet = locations[choice - 1]
+                if selected_planet == "Nebulorion":
+                    travel_to_Nebulorion()
+                elif selected_planet == "Celesterra":
+                    travel_to_Celesterra()
+                elif selected_planet == "Echopluto":
+                    travel_to_Echopluto()
+                elif selected_planet == "SpaceShop":
+                    travel_to_SpaceShop()
+                return
+            else:
+                print("Invalid planet choice. Please enter a valid number.")
+        else:
+            print("Invalid input. Please enter a number or 'q' to quit.")
+
+def bedroom():
+    print("You step into a bedroom on the right side, a cozy and inviting space.")
+    print("There's a comfortable bed, soft lighting, and a small desk with a journal and some personal items.")
+
+def kitchen():
+    print("You step into a kitchen on the left side, a warm and inviting space.")
+    print("There's a dining table, well-lit countertops, and a small desk with a recipe book and some cooking utensils.")
+
+def corridor():
+    print("You stand in a narrow corridor of the spaceship, with doors on your left, right, and one ahead.")
+    print("Which direction would you like to explore?")
+
+def storage():
+    print("You step into a room on the left side of the spaceship. It's the storage room.")
+    print("In storage, you see shelves and various equipment neatly stored here, but nothing particularly useful for your current mission.")
+
+    while True:
+        action = input("What would you like to do? (type 'go to closet' or 'quit'): ").lower()
+
+        if action == 'go to closet':
+            closet_storage()
+        elif action == 'quit':
+            print("You leave the storage room.")
+            break
+        else:
+            print("I don't understand that command. Please try again.")
+
+def closet_storage():
+    print("You enter a small closet in the storage room.")
+    print("In the closet, you see the following items:")
+    items = ["spacesuit", "flashlight", "energy bar", "toolbox"]
+
+    for item in items:
+        print(f"- {item}")
+
+    while True:
+        action = input(
+            "What would you like to do? (type 'take [item]' to take an item, 'back' to return to storage): ").lower()
+
+        if action.startswith('take '):
+            item_to_take = action[5:]
+            if item_to_take in items:
+                print(f"You take the {item_to_take}.")
+                items.remove(item_to_take)
+            else:
+                print("That item is not in the closet.")
+        elif action == 'back':
+            print("You leave the closet and return to the storage room.")
+            break
+        else:
+            print("I don't understand that command. Please try again.")
+
+medbay_closet_open = False
+
+def medbay():
+    global medbay_closet_open  # Declare the global variable
+    print("Entering a room on the right side of the spaceship, you discover the medbay.")
+    print("There's a medical station with some basic supplies and a closet against the wall.")
+
+    # Check if the closet is open or closed and display the appropriate message.
+    if medbay_closet_open:
+        print("The closet is open, and you see some items inside.")
+        # Add logic to describe the items found in the closet.
+        print("You find a first aid kit and a flashlight.")
+    else:
+        print("The closet is closed. You can try to open it.")
+
+    action = input("What would you like to do? (1: Open closet, 2: Close closet, 3: Leave): ").strip()
+
+    if action == "1":
+        if not medbay_closet_open:
+            print("You open the closet and find a first aid kit and a flashlight.")
+            medbay_closet_open = True
+        else:
+            print("The closet is already open.")
+    elif action == "2":
+        if medbay_closet_open:
+            print("You close the closet.")
+            medbay_closet_open = False
+        else:
+            print("The closet is already closed.")
+    elif action == "3":
+        print("You leave the medbay.")
+    else:
+        print("That's not a valid action. Try again.")
+
+def lobby():
+    print("Continuing through the spaceship's corridor, you arrive at the lobby area.")
+    print("It appears to be a crew relaxation space with several doors leading to other rooms to explore.")
+
+def electrical():
+    print("You enter a room on the right side, which appears to be the electrical control room.")
+    print("You find a notebook with technical schematics and notes about nearby star systems.")
+
+def engine():
+    print("Entering a room in front of you, you discover the spaceship's engine room.")
+    print("It's a complex machinery space, and you find a notebook with maintenance logs and star system data.")
+
+def reactor():
+    print("You enter a room on the left side. It's the reactor room.")
+    print("You find a notebook with information about the ship's power generation and nearby star systems.")
+
+spaceship_rooms = {
+    "cockpit": cockpit,
+    "corridor": corridor,
+    "storage": storage,
+    "medbay": medbay,
+    "lobby": lobby,
+    "electrical": electrical,
+    "engine": engine,
+    "reactor": reactor,
+    "bedroom": bedroom,
+    "kitchen": kitchen,
+    "seat": drive_cockpit,
+}
+
+if __name__ == "__main__":
+    print("Welcome to the Space Adventure Game!")
+    print("As an intrepid space explorer, you have embarked on a mission to the far reaches of the cosmos.")
+    print("However, a technical glitch has left you stranded in unknown space.")
+    print("You can choose to navigate the spaceship using numerical options.")
+    print("Let's start with your astronaut name:")
+    name = input("Enter your name: ")
+    print("Good luck, " + name + ".")
+
+    current_room = "cockpit"
+    while True:
+        spaceship_rooms[current_room]()
+
+        print()
+        print("Enter the option you'd like to choose:")
+        print("1: Forward")
+        print("2: Backward")
+        print("3: Left")
+        print("4: Right")
+        print("5: Drive the cockpit")
+        option = input().strip()
+
+        if option == "1":
+            if current_room == "cockpit":
+                current_room = "corridor"
+            elif current_room == "corridor":
+                current_room = "lobby"
+            elif current_room == "storage":
+                current_room = "corridor"
+            elif current_room == "medbay":
+                current_room = "corridor"
+        elif option == "2":
+            if current_room == "bedroom":
+                current_room = "cockpit"
+            elif current_room == "cockpit":
+                current_room = "seat"
+            elif current_room == "seat":
+                current_room = "cockpit"
+            elif current_room == "kitchen":
+                current_room = "cockpit"
+            elif current_room == "corridor":
+                current_room = "cockpit"
+            elif current_room == "lobby":
+                current_room = "corridor"
+            elif current_room == "corridor":
+                current_room = "storage"
+            elif current_room == "medbay":
+                current_room = "corridor"
+        elif option == "3":
+            if current_room == "cockpit":
+                current_room = "kitchen"
+            elif current_room == "corridor":
+                current_room = "storage"
+            elif current_room == "storage":
+                current_room = "corridor"
+            elif current_room == "lobby":
+                current_room = "reactor"
+            elif current_room == "reactor":
+                current_room = "lobby"
+        elif option == "4":
+            if current_room == "cockpit":
+                current_room = "bedroom"
+            elif current_room == "corridor":
+                current_room = "medbay"
+            elif current_room == "medbay":
+                current_room = "corridor"
+            elif current_room == "lobby":
+                current_room = "electrical"
+            elif current_room == "electrical":
+                current_room = "lobby"
+        elif option == "5":
+            navigate_spaceship()
+        else:
+            print("That's not a valid option. Try again.")
