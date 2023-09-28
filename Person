@@ -1,0 +1,42 @@
+class Character:
+    def __init__(self, name):
+        self.name = name
+        self.inventory = {}
+        self.money = 0
+
+    def add_item(self, item, quantity=1):
+        if item in self.inventory:
+            self.inventory[item] += quantity
+        else:
+            self.inventory[item] = quantity
+
+    def remove_item(self, item, quantity=1):
+        if item in self.inventory:
+            if self.inventory[item] >= quantity:
+                self.inventory[item] -= quantity
+            else:
+                print("You don't have enough", item)
+        else:
+            print("You don't have any", item)
+
+    def add_money(self, amount):
+        self.money += amount
+
+    def remove_money(self, amount):
+        if self.money >= amount:
+            self.money -= amount
+        else:
+            print("You don't have enough money")
+
+
+
+
+# example
+player = Character("John")
+player.add_item("sword")
+player.add_item("potion", 3)
+player.add_money(100)
+player.remove_money(50)
+player.remove_item("potion", 2)
+print(player.inventory)
+print(player.money)
