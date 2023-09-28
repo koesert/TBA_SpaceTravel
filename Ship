@@ -1,0 +1,197 @@
+def cockpit():
+    print("You find yourself in the spaceship's cockpit, surrounded by an array of blinking controls and a panoramic view of the cosmos.")
+    print("You can choose to navigate in any of the four directions. Where would you like to go?")
+
+def drive_cockpit():
+    print("You take a seat in the cockpit, ready to command the spaceship through the vastness of space.")
+    print("You can choose to navigate in any of the four directions. Where would you like to go?")
+
+def bedroom():
+    print("You step into a bedroom on the right side, a cozy and inviting space.")
+    print("There's a comfortable bed, soft lighting, and a small desk with a journal and some personal items.")
+
+def kitchen():
+    print("You step into a kitchen on the left side, a warm and inviting space.")
+    print("There's a dining table, well-lit countertops, and a small desk with a recipe book and some cooking utensils.")
+
+def corridor():
+    print("You stand in a narrow corridor of the spaceship, with doors on your left, right, and one ahead.")
+    print("Which direction would you like to explore?")
+
+
+def storage():
+    print("You step into a room on the left side of the spaceship. It's the storage room.")
+    print(
+        "In storage, you see shelves and various equipment neatly stored here, but nothing particularly useful for your current mission.")
+
+    while True:
+        action = input("What would you like to do? (type 'go to closet' or 'quit'): ").lower()
+
+        if action == 'go to closet':
+            closet_storage()
+        elif action == 'quit':
+            print("You leave the storage room.")
+            break
+        else:
+            print("I don't understand that command. Please try again.")
+
+
+def closet_storage():
+    print("You enter a small closet in the storage room.")
+    print("In the closet, you see the following items:")
+    items = ["spacesuit", "flashlight", "energy bar", "toolbox"]
+
+    for item in items:
+        print(f"- {item}")
+
+    while True:
+        action = input(
+            "What would you like to do? (type 'take [item]' to take an item, 'back' to return to storage): ").lower()
+
+        if action.startswith('take '):
+            item_to_take = action[5:]
+            if item_to_take in items:
+                print(f"You take the {item_to_take}.")
+                items.remove(item_to_take)
+            else:
+                print("That item is not in the closet.")
+        elif action == 'back':
+            print("You leave the closet and return to the storage room.")
+            break
+        else:
+            print("I don't understand that command. Please try again.")
+
+medbay_closet_open = False
+
+def medbay():
+    global medbay_closet_open  # Declare the global variable
+    print("Entering a room on the right side of the spaceship, you discover the medbay.")
+    print("There's a medical station with some basic supplies and a closet against the wall.")
+
+    # Check if the closet is open or closed and display the appropriate message.
+    if medbay_closet_open:
+        print("The closet is open, and you see some items inside.")
+        # Add logic to describe the items found in the closet.
+        print("You find a first aid kit and a flashlight.")
+    else:
+        print("The closet is closed. You can try to open it.")
+
+    action = input("What would you like to do? (open closet/close closet/leave): ").strip().lower()
+
+    if action == "open closet":
+        if not medbay_closet_open:
+            print("You open the closet and find a first aid kit and a flashlight.")
+            medbay_closet_open = True
+        else:
+            print("The closet is already open.")
+    elif action == "close closet":
+        if medbay_closet_open:
+            print("You close the closet.")
+            medbay_closet_open = False
+        else:
+            print("The closet is already closed.")
+    elif action == "leave":
+        print("You leave the medbay.")
+    else:
+        print("That's not a valid action. Try again.")
+
+def lobby():
+    print("Continuing through the spaceship's corridor, you arrive at the lobby area.")
+    print("It appears to be a crew relaxation space with several doors leading to other rooms to explore.")
+
+def electrical():
+    print("You enter a room on the right side, which appears to be the electrical control room.")
+    print("You find a notebook with technical schematics and notes about nearby star systems.")
+
+def engine():
+    print("Entering a room in front of you, you discover the spaceship's engine room.")
+    print("It's a complex machinery space, and you find a notebook with maintenance logs and star system data.")
+
+def reactor():
+    print("You enter a room on the left side. It's the reactor room.")
+    print("You find a notebook with information about the ship's power generation and nearby star systems.")
+
+spaceship_rooms = {
+    "cockpit": cockpit,
+    "corridor": corridor,
+    "storage": storage,
+    "medbay": medbay,
+    "lobby": lobby,
+    "electrical": electrical,
+    "engine": engine,
+    "reactor": reactor,
+    "bedroom": bedroom,
+    "kitchen": kitchen,
+    "seat": drive_cockpit(),
+}
+
+if __name__ == "__main__":
+    print("Welcome to the Space Adventure Game!")
+    print("As an intrepid space explorer, you have embarked on a mission to the far reaches of the cosmos.")
+    print("However, a technical glitch has left you stranded in unknown space.")
+    print("You can choose to navigate the spaceship in four directions: left, right, forward, and backward.")
+    print("Let's start with your astronaut name:")
+    name = input("Enter your name: ")
+    print("Good luck, " + name + ".")
+
+    current_room = "cockpit"
+    while True:
+        spaceship_rooms[current_room]()
+        print()
+        print("Enter the direction you'd like to move (left, right, forward, backward): ")
+        direction = input().strip().lower()
+
+        if direction == "forward":
+            if current_room == "cockpit":
+                current_room = "corridor"
+            elif current_room == "corridor":
+                current_room = "lobby"
+            elif current_room == "storage":
+                current_room = "corridor"
+            elif current_room == "medbay":
+                current_room = "corridor"
+
+        elif direction == "backward":
+            if current_room == "bedroom":
+                current_room = "cockpit"
+            elif current_room == "cockpit":
+                current_room = "seat"
+            elif current_room == "seat":
+                current_room = "cockpit"
+            elif current_room == "kitchen":
+                current_room = "cockpit"
+            elif current_room == "corridor":
+                current_room = "cockpit"
+            elif current_room == "lobby":
+                current_room = "corridor"
+            elif current_room == "corridor":
+                current_room = "storage"
+            elif current_room == "medbay":
+                current_room = "corridor"
+
+        elif direction == "left":
+            if current_room == "cockpit":
+                current_room = "kitchen"
+            elif current_room == "corridor":
+                current_room = "storage"
+            elif current_room == "storage":
+                current_room = "corridor"
+            elif current_room == "lobby":
+                current_room = "reactor"
+            elif current_room == "reactor":
+                current_room = "lobby"
+
+        elif direction == "right":
+            if current_room == "cockpit":
+                current_room = "bedroom"
+            elif current_room == "corridor":
+                current_room = "medbay"
+            elif current_room == "medbay":
+                current_room = "corridor"
+            elif current_room == "lobby":
+                current_room = "electrical"
+            elif current_room == "electrical":
+                current_room = "lobby"
+
+        else:
+            print("That's not a valid direction. Try again.")
