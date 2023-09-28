@@ -1,69 +1,107 @@
-import random
+import time
+import random 
 
-class AlienShip:
-    def __init__(self, name):
-        self.name = name
-        self.locations = {
-            "Bridge": "You are at the bridge of the alien ship.",
-            "Engine Room": "You find yourself in the engine room. It's filled with strange machinery.",
-            "Crew Quarters": "You enter the crew quarters. It seems deserted.",
-            "Cargo Hold": "You're in the cargo hold. There are mysterious alien artifacts here."
-        }
-        self.current_location = "Bridge"
-        self.num_aliens = 0
+def alienship(hasKatana=False):
+    print("You arrive at the secret garage deep within an underground cavern.")
+    time.sleep(2)
+    print("You have two entrances to choose from: the main entrance or a side entrance.")
+    time.sleep(2)
 
-    def describe_location(self):
-        return self.locations[self.current_location]
-
-    def change_location(self, new_location):
-        if new_location in self.locations:
-            self.current_location = new_location
-
-            probabilities = [0.25, 0.35, 0.20, 0.15, 0.05]
-            self.num_aliens = random.choices(range(5), probabilities)[0]
-        else:
-            print("Invalid location!")
-
-    def interact_with_location(self):
-        print(self.describe_location())
-        if self.num_aliens == 0:
-            print("You don't see any aliens here.")
-        else:
-            print(f"You see {self.num_aliens} alien{'s' if self.num_aliens > 1 else ''} here.")
-
-    def make_contact_with_aliens(self):
-        if self.num_aliens > 0:
-            print("You attempt to make contact with the aliens...")
-            contact_success = random.random() < 0.3 
-            if contact_success:
-                print("Contact with the aliens was successful! They seem friendly.")
-            else:
-                print("Contact with the aliens was unsuccessful. They appear hostile.")
-        else:
-            print("There are no aliens here to make contact with.")
-
-def explore_alien_ship(alien_ship):
     while True:
-        print("\nWhat would you like to do?")
-        print("1. Move to a different location")
-        print("2. Interact with the current location")
-        print("3. Make contact with aliens")
-        print("4. Quit the game")
-        choice = input("Enter your choice: ")
+        entrance_choice = input("Which entrance do you want to use?\n1. Main entrance\n2. Side entrance\nChoice: ")
 
-        if choice == "1":
-            new_location = input("Enter the name of the location you want to move to: ")
-            alien_ship.change_location(new_location)
-        elif choice == "2":
-            alien_ship.interact_with_location()
-        elif choice == "3":
-            alien_ship.make_contact_with_aliens()
-        elif choice == "4":
-            print("Thanks for playing!")
-            break
+        if entrance_choice == "1":
+            print("You enter through the main entrance and find yourself in front of the alien spaceship.")
+
+            if hasKatana:
+                print("You have a katana with you.")
+
+            while True:
+                print("What would you like to do?")
+                time.sleep(2)
+                print("1. Try to kill all of them")
+                print("2. Greet the alien guards and claim you've been sent by their leader to test the alien spaceship.")
+                choice = input("Choice: ")
+
+                if choice == "1":
+                    win_chance = random.randint(0, 1)  # 50% chance of winning
+                    if win_chance == 1:
+                        print("You launch a surprise attack on the alien guards, catching them off guard.")
+                        time.sleep(2)
+                        print("After a fierce struggle, you manage to defeat all of them.")
+                        time.sleep(2)
+                        print("With the guards eliminated, you board the alien spaceship and prepare for takeoff.")
+                        time.sleep(2)
+                        print("Your daring escape is a success, and you're now the pilot of an alien spacecraft!")
+                        return  
+                    else:
+                        print("You attempt to take on the alien guards, but they overpower you and sound the alarm.")
+                        time.sleep(2)
+                        print("You're captured and executed by the guards.")
+                        return  
+                elif choice == "2":
+                    print("You decide to take a diplomatic approach. You greet the alien guards and inform them that you've been sent by their leader to test the alien spaceship.")
+                    time.sleep(2)
+                    print("The guards exchange looks and appear to be communicating in their own language.")
+                    time.sleep(2)
+                    print("After a tense moment, one of the guards nods in agreement and allows you to proceed.")
+                    time.sleep(2)
+                    print("You thank the guards and board the alien spaceship, ready to test its capabilities.")
+                    return  
+                else:
+                    print("Invalid choice. Please select a valid option.")
+
+        elif entrance_choice == "2":
+            print("You choose the side entrance, which leads you into a dimly lit corridor.")
+            time.sleep(2)
+            print("As you walk through the corridor, you spot a pistol on the ground.")
+            time.sleep(2)
+            print("You pick it up and proceed cautiously.")
+            print("As you approach the alien spaceship, you see a guard standing close to it.")
+            time.sleep(2)
+
+            while True:
+                print("What would you like to do?")
+                time.sleep(2)
+                print("1. Silently kill the guard with the katana and escape the planet with your new alien spaceship.")
+                print("2. Try to kill the guard with your bare hands.")
+                print("3. Execute the guard with the pistol and leave the planet with your new alien spaceship.")
+                choice = input("Choice: ")
+
+                if choice == "1":
+                    if hasKatana:
+                        print("You silently approach the guard and skillfully eliminate him with your katana.")
+                        time.sleep(2)
+                        print("With the guard out of the way, you board the alien spaceship and prepare for takeoff.")
+                        time.sleep(2)
+                        print("Your daring escape is a success, and you're now the pilot of an alien spacecraft!")
+                        return  
+                    else:
+                        print("You don't have a katana to silently kill the guard. He spots you and sounds the alarm.")
+                        time.sleep(2)
+                        print("You're captured and executed by the guards.")
+                        return  
+                elif choice == "2":
+                    if hasKatana:
+                        print("You choose to try and kill the guard with your bare hands, but he's well-trained and overpowers you.")
+                    else:
+                        print("You attempt to attack the guard with your bare hands, but he's too strong and easily subdues you.")
+                    time.sleep(2)
+                    print("The guard calls for reinforcements, and you're captured and executed.")
+                    return  
+                elif choice == "3":
+                    print("You take aim with the pistol and shoot the guard, ending his threat.")
+                    time.sleep(2)
+                    print("With the guard eliminated, you quickly board the alien spaceship and prepare for takeoff.")
+                    time.sleep(2)
+                    print("Your daring escape is a success, and you're now the pilot of an alien spacecraft!")
+                    return  
+                else:
+                    print("Invalid choice. Please select a valid option.")
+
         else:
-            print("Invalid choice. Try again.")
+            print("Invalid choice. Please select a valid entrance.")
 
-alien_ship = AlienShip("AlienVessel")
 
-explore_alien_ship(alien_ship)
+# Example usage:
+alienship(hasKatana=True)
