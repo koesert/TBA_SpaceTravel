@@ -4,7 +4,11 @@ shop_items = {
     "Pistol": {"price": 50, "quantity": 20},
     "Medkit": {"price": 30, "quantity": 15},
     "Alien artifact": {"price": 200, "quantity": 8},
-    "Food": {"price": 20, "quantity": 10},
+    "Katana": {"price": 150, "quantity":5},
+    "Minigun": {"price": 300, "quantity":1},
+    "Axe": {"price": 100, "quantity":5},
+    "Poison Shooter": {"price": 200, "quantity":5},
+    "Grenade Launcher": {"price": 250, "quantity":5},
 }
 
 
