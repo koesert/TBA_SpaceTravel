@@ -44,7 +44,7 @@ def drive_cockpit():
             navigate_to_celesterra()
             break
         elif choice == "4":
-            navigate_to_spaceshop()
+            spaceshop()
             break
         elif choice == "5":
             visit_alien_outpost()
