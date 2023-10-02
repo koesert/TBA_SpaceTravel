@@ -67,6 +67,7 @@ def math_quiz():
 
     if attempts == 0:
         print(f"Sorry, you've used all your attempts. The correct answer was '{result}'.")
+        
 
 
 def half_word():
@@ -228,6 +229,18 @@ def wordle():
         else:
             print("You have used all your attempts, therefore you lost. The word was: ", word)
  
-
+def random_minigame():
+    game_list = ["1", "2", "3", "4", "5"]
+    choice = random.choice(game_list)
+    if choice == "1":
+        math_quiz()
+    elif choice == "2":
+        half_word()
+    elif choice == "3":
+        word_jumble()
+    elif choice == "4":
+        hangman()
+    elif choice == "5":
+        wordle()
 
 
