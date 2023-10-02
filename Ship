@@ -36,13 +36,13 @@ def drive_cockpit():
             "Where would you like to go? (Type the corresponding number or 'drive' to start driving): ").strip().lower()
 
         if choice == "1":
-            navigate_to_nebulorion()
+            explore_nebulorion()
             break
         elif choice == "2":
             arrive_at_echopluto()
             break
         elif choice == "3":
-            navigate_to_celesterra()
+            explore_celesterra()
             break
         elif choice == "4":
             spaceshop()
@@ -58,7 +58,6 @@ def drive_cockpit():
             break
         else:
             print("Invalid choice. Please try again.")
-
 
 def bedroom():
     print("You step into a bedroom on the right side, a cozy and inviting space.")
