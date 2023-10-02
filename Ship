@@ -27,8 +27,9 @@ def drive_cockpit():
     print("2. Echopluto")
     print("3. Celesterra")
     print("4. SpaceShop")
-    print("5. AlienShip")
-    print("6. Return to cockpit")
+    print("5. Spacedust Saloon")
+    print("6. AlienShip")
+    print("7. Return to cockpit")
 
     while True:
         choice = input(
@@ -47,14 +48,17 @@ def drive_cockpit():
             spaceshop()
             break
         elif choice == "5":
+            display_shop()
+        elif choice == "6":
             visit_alien_outpost()
             break
-        elif choice == "6":
+        elif choice == "7":
             print("You return to the cockpit.")
             cockpit()
             break
         else:
             print("Invalid choice. Please try again.")
+
 
 def bedroom():
     print("You step into a bedroom on the right side, a cozy and inviting space.")
